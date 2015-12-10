@@ -14,19 +14,21 @@
         console.log(this.x);
     };
     Fn.prototype = {
+        //y:250,
 //        constructor: Fn,
         getY: function () {
             console.log(this.y);
         }
     };
     var f = new Fn;
-    f.getY === Fn.prototype.getY - > true
-    f.getX() - > undefined()
-    报错
+    f.getY === Fn.prototype.getY //- > true
+    //f.getX(); //- > undefined()
+    //报错
     f.getY();
-    - > this是f - > console.log(f.y) - > 200
-    f.__proto__.getY() - > this是f.__proto__ - > console.log(f.__proto__.y) - > undefined
-    f.constructor - > Object
+    //- > this是f// - > console.log(f.y) //- > 200
+    f.__proto__.getY(); //- > this是f.__proto__ - > console.log(f.__proto__.y) - > undefined
+    Fn.prototype.getY();
+    f.constructor; //- > Object
 </script>
 </body>
 </html>

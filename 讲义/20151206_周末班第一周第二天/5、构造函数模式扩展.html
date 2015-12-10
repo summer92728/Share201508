@@ -6,18 +6,18 @@
 </head>
 <body>
 <script type="text/javascript">
-    //    function Fn() {
-    //        //this->f1
-    //        this.x = 100;
-    //        this.getX = function () {
-    //            //this->需要看getX执行的时候才知道
-    //            console.log(this.x);
-    //        }
-    //    }
-    //    var f1 = new Fn;
-    //    f1.getX();//->方法中的this是f1 ->100
-    //    var ss = f1.getX;
-    //    ss();//->方法中的this是window ->undefined
+//        function Fn() {
+//            //this->f1
+//            this.x = 100;
+//            this.getX = function () {
+//                //this->需要看getX执行的时候才知道
+//                console.log(this.x);
+//            }
+//        }
+//        var f1 = new Fn;
+//        f1.getX();//->方法中的this是f1 ->100
+//        var ss = f1.getX;
+//        ss();//->方法中的this是window ->undefined
 
     //1、在构造函数模式中new Fn()执行,如果Fn不需要传递参数的话,后面的小括号可以省略
     //2、this的问题:在类中出现的this.xxx=xxx中的this都是当前类的实例,而某一个属性值(方法),方法中的this需要看方法执行的时候,前面是否有"."才能知道this是谁
@@ -63,14 +63,14 @@
     //var a = [];
     //console.log(a instanceof Array);//->true 说明a是一个数组
 
-    function Fn() {
-        this.x = 100;
-        this.getX = function () {
-            console.log(this.x);
-        };
-    }
-    var f1 = new Fn;
-    var f2 = new Fn;
+//    function Fn() {
+//        this.x = 100;
+//        this.getX = function () {
+//            console.log(this.x);
+//        };
+//    }
+//    var f1 = new Fn;
+//    var f2 = new Fn;
     //6、f1和f2都是Fn这个类的一个实例,都拥有x和getX两个属性,但是这两个属性是各自的私有的属性,所以:
     //console.log(f1.getX === f2.getX);//->false
 
@@ -81,11 +81,11 @@
     //console.log(f1.hasOwnProperty("getX"));//->true "getX"是f1的私有的属性
 
     //思考:检测某一个属性是否为该对象的"公有属性" hasPubProperty
-    function hasPubProperty(obj, attr) {
-        //首先保证是它的一个属性并且还不是私有的属性,那么只能是公有的属性了
-        return (attr in obj) && !obj.hasOwnProperty(attr);
-    }
-    console.log(hasPubProperty(f1, "getX"));//->false
+//    function hasPubProperty(obj, attr) {
+//        //首先保证是它的一个属性并且还不是私有的属性,那么只能是公有的属性了
+//        return (attr in obj) && !obj.hasOwnProperty(attr);
+//    }
+//    console.log(hasPubProperty(f1, "getX"));//->false
 
     //7、isPrototypeOf 自己回去查看高程三或者百度搜素自己找到答案即可
 </script>

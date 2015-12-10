@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="按钮1"/>
+<input type="button" value="按钮2"/>
+<input type="button" value="按钮3"/>
+<input type="button" value="按钮4"/>
+<input type="button" value="按钮5"/>
+</body>
+<script type="text/javascript">
+    var ary=["red","yellow","pink","green","blue"];
+/*
+    var oButtons=document.getElementsByTagName("input");
+    for(var i=0;i<oButtons.length;i++){
+        oButtons[i].huihui=i;
+        oButtons[i].onclick=function(){
+            getBackground(this.huihui);
+        }
+    }
+
+    function getBackground(index){
+
+        document.body.style.backgroundColor=""+ ary[index] + "";
+
+    }*/
+
+
+
+    var oButtons=document.getElementsByTagName("input");
+    for(var i=0;i<oButtons.length;i++){
+        ;(function(i) {
+            oButtons[i].onclick = function () {
+                document.body.style.backgroundColor = "" + ary[i] + "";
+            }
+        })(i);
+    }
+
+
+ /*   var oButtons=document.getElementsByTagName("input");
+    oButtons[i].onclick =(function(i){
+        return function(){
+            document.body.style.backgroundColor = "" + ary[i] + "";
+        }
+    })(i);
+*/
+
+
+
+
+
+
+</script>
+</html>

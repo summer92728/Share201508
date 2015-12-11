@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+//    console.log("num:"+num);
+//    console.log("number:"+number);
+//    var number,num=1;
+
+//    function fn(){
+//        console.log("number:"+number);
+//        console.log("num:"+num);
+//
+//        var number,num=1;
+//        console.log("num:"+num);
+//
+//        if(num in window){
+//            console.log("num:全局");
+//        }else{
+//            console.log("num:不是全局");
+//        }
+//    }
+//   var f=fn();
+//console.log("f.num:"+f.num);
+//console.log("window.num:"+window.num);
+
+
+//    console.log("text:"+text);
+//    text=1;
+
+
+function fo(){
+    var i=0;
+    return function(n){
+        return n+i++;
+    }
+};
+
+var f=fo();
+var a = f(15); //value:__________________
+var b = fo()(15); //value:__________________
+var c = fo()(20); //value:__________________
+var d = f(20); //value:__________________
+</script>
+</body>
+</html>

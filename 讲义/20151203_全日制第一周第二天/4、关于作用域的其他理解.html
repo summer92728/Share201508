@@ -6,14 +6,14 @@
 </head>
 <body>
 <script type="text/javascript">
-    //    var name = "china";
-    //    var age = 5000;
-    //    (function (name, age) {//形参变量也是私有作用域中的私有变量
-    //        name = "zhufeng";
-    //        age = 7;
-    //        console.log(name, age);
-    //    })(name, age);//执行函数传递参数值,它只是把全局的name和age的值分别的赋值给我们的形参 ->"执行的时候传递的永远是一个值"
-    //    console.log(name, age);
+        var name = "china";
+        var age = 5000;
+        (function (name, age) {//形参变量也是私有作用域中的私有变量
+            name = "zhufeng";
+            age = 7;
+            console.log(name, age);
+        })(name, age);//执行函数传递参数值,它只是把全局的name和age的值分别的赋值给我们的形参 ->"执行的时候传递的永远是一个值"
+        console.log(name, age);
 
     //在函数里面修改全局的name和age(前提是私有的name和age依然存在)
     //    var name = "china";
@@ -28,15 +28,15 @@
     //    console.log(name, age);
 
     //jQuery部分实现的原理:在私有中定义jQuery,通过window.xxx让其在全局下也可以使用
-    (function () {
-        var jQuery = function () {
-
-        };
-
-        window.jQuery = window.$ = jQuery;
-    })();
-    jQuery();
-    $();
+//    (function () {
+//        var jQuery = function () {
+//
+//        };
+//
+//        window.jQuery = window.$ = jQuery;
+//    })();
+//    jQuery();
+//    $();
 
 
 </script>

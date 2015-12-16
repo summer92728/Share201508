@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+var num = 0;
+function Fn(num) {
+    arguments[0] = 100;
+    this.num = 200;
+    console.log(num);
+    console.log(this.num);
+    return num;
+}
+
+Fn.num = 400;  //给类Fn私有属性num赋值为400
+Fn.prototype.num = 300;//给类Fn的原型对象添加一个属性num并赋值为300
+Fn.prototype.getNum = function () {  //给Fn的原型对象添加一个getNum的方法
+    console.log(this.num);
+};
+
+var f = new Fn(num); // 构造函数方式，f是fn的一个实例      ->100,200
+console.log(f.num); //  ->200
+f.getNum();//->200
+Fn.prototype.getNum()// 调用Fn的原型上的getNum方法->300;
+console.log(num);//->0
+//
+var n = Fn(num);//Fn作为一个普通的函数执行,将其执行完后的结果返回给变量n ->100,200
+console.log(n);//->100
+console.log(num);//->200
+</script>
+</html>

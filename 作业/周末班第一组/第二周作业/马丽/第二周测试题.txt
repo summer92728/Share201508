@@ -1,0 +1,35 @@
+一.json是一种严谨的数据格式，是提供前后台数据交互的一种数据格式，作为数据存储的载体
+二.把普通格式/JSON格式的对象转换为JSON格式的字符串，用window.json.stringify()；把JSON格式的字符串转换为JSON格的对象，用window.json.parse()；
+三,对象可以看成一个类数组，数组Array.prototype指向的是object。数组也可以当作对象来使用
+四，call和apply的区别：
+首先他们都是用来改变this关键字的，但是call在传递参数的时候是一个个的传递的，apply在传递参数的时候，需要把传递的参数放到一个数组中，然后再传递进来；
+五，eval的作用是把字符串转化为js表达式
+六，弹出的object,因为{}是个空对象，是对象数据类型的
+七，用instanceof能够严格的区分这个数组是不是数组类型的
+八，js中捕获异常使用
+	try{
+	}catch(e){
+		}
+九，首先把arguments转化为数组，
+	var ary = [];
+        try {	
+		ary = Array.prototype.slice.call(arguments);
+       		} catch (e) {
+           for (var i = 0; i < arguments.length; i++) {
+               ary[ary.length] = arguments[i];
+          		}
+       		}
+       console.log(ary);
+不考虑兼容的话，可以用中间继承的方法转化为数组对象，arguments._ _proto_ _=Array.prototype这样就可以直接用数组原型里面sort()方法了；以为sort()方法是数组的内置类方法，只能是数组的实例才能使用这个方法，arguments不是数组对像，不是数组的实例，所以不能直接使用sort()方法；
+十，
+function fn1(){alert(1)};
+function fn2(){alert(2)};
+fn3=fn2.call;   
+fn2.call(fn1);//请问输出什么结果，为什么
+fn3.call(fn1);
+
+fn2.call(fn1);这句话的意思是利用call方法把fn2方法的this关键字改成了fn1，因为fn2中没有this关键词，所以执行，输出2
+fn3.call(fn1)执行，相当于fn2.call.call(fn1)执行，相当于把fn2.call的this关键字改成了fn1，所以 就是fn1.call（）执行，输出1
+
+
+

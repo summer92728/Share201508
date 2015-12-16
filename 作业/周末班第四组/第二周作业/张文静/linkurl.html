@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+	** 字符串截取
+	*/
+	function getLinkUrl(linkurl) {
+        var link = linkurl.split("?")[1];
+        var link2 = link.split("&");
+        console.log(link2);
+    }
+    getLinkUrl("http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0");
+
+	
+    function UrlSearch()
+    {
+        var mid,cid,app;
+        var str="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+
+        var num=str.indexOf("?")
+        str=str.substr(num+1);
+		var arr=str.split("&");
+
+        for(var i=0;i < arr.length;i++){
+            num=arr[i].indexOf("=");
+            if(num>0){
+                name=arr[i].substring(0,num);
+				value=arr[i].substr(num+1);
+				this[name]=value;
+            }
+        }
+		console.log(this);
+
+    }
+    Request=new UrlSearch(); //实例化
+	
+    /*
+	** 正则
+	*/	
+	function getQueryString(name) { 
+		var uri = "http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0"; 
+		var re = new RegExp("" +name+ "=([^&?]*)", "ig");
+		var res = uri.match(re);	
+		return res;
+	} 
+	console.log(getQueryString("mid"));
+	console.log(getQueryString("cid"));
+	console.log(getQueryString("app"));
+
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;   //形参num=100
+        this.num = 200;     //类属性
+        console.log(num);  //100
+        console.log(this.num);  //200
+        return num;   //100
+    }
+
+    Fn.num = 400;   // 对象的属性
+    Fn.prototype.num = 300;   //Fn类原型上的私有属性num
+    Fn.prototype.getNum = function () {   //Fn类原型上的公有方法
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);  //实例化fn
+    console.log(f.num);  //200
+    f.getNum();  //200
+    Fn.prototype.getNum();  //300
+    console.log(num);  //0
+
+    var n = Fn(num);
+    console.log(n);   //100
+    console.log(num);//200
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var num = 0;//先预解释 var num
+    function Fn(num) { //将Fn当作普通函数来执行，num作为形参是私有变量
+        arguments[0] = 100;//索引为0的元素变为100，所以私有变量num=100
+        this.num = 200;//是全局变量
+        console.log(num);//->100
+        console.log(this.num);//->200
+        return num;
+    }
+
+    Fn.num = 400;//Fn作为对象，给Fn添加一个属性名num=400
+    Fn.prototype.num = 300;//Fn作为类 原型上有一个num
+    Fn.prototype.getNum = function () {//给Fn原型上添加一个getNum
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);//f作为Fn的一个实例
+    console.log(f.num);//->200
+    f.getNum();//->200
+    Fn.prototype.getNum();//->300
+    console.log(num);//->0
+
+    var n = Fn(num);//->n作为Fn的一个实例，先将Fn当作普通函数执行一次 输出100 200
+    console.log(n);//->100
+    console.log(num);//->200
+
+
+</script>
+</body>
+</html>

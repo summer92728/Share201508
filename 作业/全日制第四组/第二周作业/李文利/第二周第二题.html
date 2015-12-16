@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+//    var reb=/(\w+=\d+)&(\w+=\d+)&((\w+=1\.\d+)+)/g;
+    var reb=/((\w+=\d+&)+)((\w+=1\.\d+)+)/;
+    var urll="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0&app=1.0";
+var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+var aa=reb.exec(urll);
+console.log(aa);
+    console.log(aa[1]);
+    console.log(aa[2]);
+    console.log(aa[3]);
+    console.log(aa[4]);
+    var cc=reb.exec(url);
+console.log(cc);
+    console.log(cc[1]);
+    console.log(cc[2]);
+    console.log(cc[3]);
+</script>
+</body>
+</html>

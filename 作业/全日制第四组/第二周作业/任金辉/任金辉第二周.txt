@@ -1,0 +1,54 @@
+﻿作业/项目/优质代码的仓库地址：
+https://github.com/zhufengpeixun/Share201508.git (以后的作业/项目/代码贡献都提交到这个地址)
+
+[周三晚上12:00之前提交作业]
+
+1、”珠峰培训第二周作业.doc“
+
+2、本题在项目开发中必用到
+    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}
+
+ var str="https://passport.baidu.com/v2/?reg=200&tt=300&gid=100"
+    //{reg:200,tt:300,gid:100}
+function urlToObj(str){
+    var temp=[];
+    var reg=/([^=?&]+)=([^=?&]+)/g;
+    var obj={};
+    while(temp=reg.exec(str)){
+        obj[temp[1]]=temp[2];
+    }
+    return obj;
+
+}
+    console.log(urlToObj(str));
+
+
+
+
+
+3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);//------》近似普通函数执行一次，100,200.
+    console.log(f.num);//-------》200
+    f.getNum();//---------------》200
+    Fn.prototype.getNum();//----》300
+    console.log(num);//---------》0
+
+    var n = Fn(num);//----------》100,200
+    console.log(n);//-----------》100
+    console.log(num);//---------》200

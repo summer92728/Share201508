@@ -1,0 +1,32 @@
+
+3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+    var f = new Fn(num);
+创建实例的时候同时执行了一次Fn(num);所以弹出两个值，100,200；此时Fn是作为一个类出现的，所以出现的this都是当前的实例f，所以第二个输出的一个是f.num,
+    console.log(f.num);
+f是实例，所以输出实例f下的num值，为200
+    f.getNum();
+getNum执行的this是f，所有还是输出f下的num；200
+    Fn.prototype.getNum();
+getNum执行的this是Fn.prototype，所有输出Fn.prototype下的num值，300
+    console.log(num);
+这里输出全局下的num；所以是0
+    var n = Fn(num);
+Fn(num)又执行一次，这里只是作为 一个函数执行的，所以其中的this是window，并且把window下num值改为200；所以输出100,200
+    console.log(n);
+n是Fn执行的返回值，它返回的是私有变量num的值，所以为100
+    console.log(num);
+上边执行函数Fn();把全局下的num更改为200，所以这里输出200

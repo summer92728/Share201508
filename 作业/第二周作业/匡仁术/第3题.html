@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    // 3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);//执行构造函数，创建一个当前类的实例,以该实例为函数执行的主体，从上到下执行代码，console.log(num); -> 100   console.log(this.num); -> 即f.num = 200
+
+    console.log(f.num); //200
+    f.getNum();//console.log(this.num) -> console.log(f.num) -> 200
+    Fn.prototype.getNum();//this.num -> Fn.prototype.num = 300
+    console.log(num);//全局变量 num = 0
+
+    var n = Fn(num);//以普通函数执行，this->window arguments[0]将参数num赋值成100，window.num=200 故console.log(num) -> 100; console.log(this.num) -> 200 函数返回100
+    console.log(n);//上一个函数返回值100
+    console.log(num);//全局变量已经被修改为200
+
+</script>
+</body>
+</html>

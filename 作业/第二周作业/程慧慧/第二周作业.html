@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+    /*var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+     把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}*/
+    //(1)字符串-数组方法实现
+    function GetUrl() {
+        var url = "http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+        var arry = {};
+        if (url.indexOf("?") != -1) {
+            //获取url中"?"符后的字串
+            var i = url.indexOf("?");
+            var str = url.substr(i + 1);
+            //按&把"?"符后的字串分成数组
+            var strs = str.split("&");
+            //循环数组，把数组中的每一项在按=分成数组
+            for (var i = 0; i < strs.length; i++) {
+                var resStrs = strs[i].split("=");
+                //把数组中的第一项和第二项当作属性名和属性值存在对象中
+                arry[resStrs[0]] = (resStrs[1]);
+            }
+        }
+        return arry;
+    }
+    var res = new GetUrl();
+    console.log(res);//[object Object]{app: "1.0", cid: "1467086", mid: "100000"}
+
+
+
+    //（2）正则方式实现
+    var url = "http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    function GetUrl1(url) {
+        var reg = /([^?&=]+)=([^?&=]+)/g;
+        var ary = {};
+        var a = reg.exec(url)
+        while (a) {
+            ary[a[1]] = a[2];
+            a = reg.exec(url)
+        }
+        return ary;
+    }
+
+    var res = GetUrl1(url);
+    console.log(res);
+
+
+
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+    var f = new Fn(num);//作为类，100 200
+    console.log(f.num);//实例的私有属性 200
+    f.getNum();//实例的公有方法 200
+    Fn.prototype.getNum();//给Fn.prototype.增加属性名num属性值300  300
+    console.log(num);//全局作用域 num 0
+    var n = Fn(num);//作为普通的方法 this为window     100 200
+    console.log(n);//Fn执行的返回结果 100
+    console.log(num);//全局作用域 num 200
+</script>
+</body>
+</html>

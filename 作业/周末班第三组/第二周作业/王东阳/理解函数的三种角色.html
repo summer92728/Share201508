@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    var num=0;
+    function fn(num){
+        arguments[0]=100;
+        this.num=200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+    fn.num=400;
+    fn.prototype.num=300;
+    fn.prototype.getNum=function(){
+        <!--console.log(this.num);
+    }
+    var f=new fn(num);      //100,200
+    console.log(f.num);     //200
+    f.getNum();             //200
+    fn.prototype.getNum();  //300
+    console.log(num);       //0
+    var n=fn(num);          //100,200
+    console.log(n);         //100
+    console.log(num);       //200
+</script>
+</body>
+</html>

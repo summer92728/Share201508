@@ -1,0 +1,24 @@
+ var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;//费严格模式下把num改为100
+        this.num = 200;将f中的num改为200
+        console.log(num);//输出的是window下的也就是arguments下的所以值为100
+        console.log(this.num);这个是输出f下的值为200
+        return num;将函数中的num返回
+    }
+
+    Fn.num = 400;给FN增加一个属性名为num值为400
+    Fn.prototype.num = 300;给Fn原型增加一个属性名为num值为300
+    Fn.prototype.getNum = function () {给fn原型增加一个getNum的方法
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);
+    console.log(f.num);//输出的是FN中的this.num=200
+    f.getNum();getNum中的this的指的是f则f.num=200;
+    Fn.prototype.getNum();//getNum中的this指的是Fn.prototype则Fn.prototype.num=300
+    console.log(num);//输出全局下的num    0
+
+    var n = Fn(num);作为普通函数执行
+    console.log(n);输出Fn执行返回num值为100
+    console.log(num);这个是输出FN中this.num值200

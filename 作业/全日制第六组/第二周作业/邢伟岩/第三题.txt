@@ -1,0 +1,33 @@
+
+3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+    var f = new Fn(num);
+一、把Fn当作一个类，创建了一个实例f 。传参0，arguments[0]=100;所以私有变量num=100，this.num=200是Fn的实例f的私有属性 第一次输出100，第二次200；return的是值类型 没影响。
+    console.log(f.num);
+f是一个实例  私有属性为200   输出200.
+
+    f.getNum();
+f的共有方法  输出this.num 是f的私有属性 输出200.
+    Fn.prototype.getNum();
+getNum()里面的this是Fn.prototype，Fn.prototype里面有个属性num=300所以输出300
+    console.log(num);
+这个输出0  就没有过改变
+    var n = Fn(num);Fn当作普通函数执行。传参0 改变参数0的值为100.this为全局变量num =200 第一次输出私有变量100第二次全局变量200  返回私有变量100 n=100；
+
+    console.log(n);
+n=100 这个在上面Fn当普通函数执行的时候返回的。
+    console.log(num);
+Fn当作函数执行的时候 从新定义了num =200  所以输出200

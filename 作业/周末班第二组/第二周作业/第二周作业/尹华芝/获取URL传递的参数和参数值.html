@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+     var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+     把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}
+     */
+    var url = "http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    function urlToJsonObject(url) {
+        if (url.split("?").length == 0) {
+            return null;
+        }
+        var keyValueArray = url.split("?")[1].split("&");
+        var obj = {};
+        for (var i = 0; i < keyValueArray.length; i++) {
+            obj[keyValueArray[i].split("=")[0]] = keyValueArray[i].split("=")[1];
+        }
+        keyValueArray = null;
+        return obj;
+    }
+    console.log(urlToJsonObject(url));//Object {mid: "100000", cid: "1467086", app: "1.0"}
+</script>
+</body>
+</html>

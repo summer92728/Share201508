@@ -1,0 +1,24 @@
+3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;当做类执行里面this为实例，所以给f增加一个私有属性num=200
+        console.log(num);Fn作为类执行 输出私有变量num为100
+        console.log(this.num);输出200
+        return num;
+    }
+
+    Fn.num = 400;Fn作为对象增加一个属性
+    Fn.prototype.num = 300;给fn的原型上增加一个num的属性赋值为300
+    Fn.prototype.getNum = function () {给fn原型增加一个getNum函数数据类型的属性
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);Fn作为一个类执行并且创建一个实例f，
+    console.log(f.num);输出 200 fn当做类执行时给f增加的私有属性this.num=200
+    f.getNum();  f这个实例找到公有属性getNum（）执行，此时this为f输出200
+    Fn.prototype.getNum();Fn原型执行getNum 此时this为Fn.prototype，输出原型上的num=300
+    console.log(num);这里输出的是全局num 0
+    var n = Fn(num); 把Fn当做一个普通函数执行，把返回值赋给n，此时this为window
+    console.log(n); 因为函数中返回的是私有变量num为100
+    console.log(num);因为fn普通函数执行是this为window，this.num=window.num=200,所以输出200；

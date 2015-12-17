@@ -1,0 +1,42 @@
+﻿作业/项目/优质代码的仓库地址：
+https://github.com/zhufengpeixun/Share201508.git (以后的作业/项目/代码贡献都提交到这个地址)
+
+[周三晚上12:00之前提交作业]
+
+1、”珠峰培训第二周作业.doc“
+
+2、本题在项目开发中必用到
+    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}
+    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    var reg=/\?([^&]*)/g;
+    var ary=reg.exec(url);
+    console.log(ary);
+
+3、深刻的来理解函数的三种角色
+    var num = 0;//函数中定义的变量num
+    function Fn(num) {
+        arguments[0] = 100;//Fn作为函数的参数修改
+        this.num = 200;//作为函数修改num的值 或者作为实例的私有属性
+        console.log(num);//100
+        console.log(this.num);//200
+        return num;
+    }
+
+    Fn.num = 400;//Fn做为对象 
+    Fn.prototype.num = 300;//作为类
+    Fn.prototype.getNum = function () {
+        console.log(this.num);//200
+    };
+
+    var f = new Fn(num);//创建一个实例
+    console.log(f.num);//f是Fn的一个实例输出200
+    f.getNum();//公有属性上的方法getNum() 因为是f执行的getNum这个方法所以输出200
+    Fn.prototype.getNum();//Fn.prototype执行的getNum()所以是Fn.prototype.num=300
+    console.log(num);//全局变量num输出0
+
+    var n = Fn(num);//Fn作为函数执行传参num执行Fn这个函数形成一个私有的作用域形参赋值num=0;arguments[0]=100将num的值修改为100
+this.num=200因为Fn执行前边没.所以this代表window，this.num=200是将全局的num的值改为200;console.log(num）--》100 console.log(this.num)-->200
+将私有变量num=100返回给n
+    console.log(n);//n接收的是Fn执行返回的结果所以是100
+    console.log(num);//输出全局变量num,num=200

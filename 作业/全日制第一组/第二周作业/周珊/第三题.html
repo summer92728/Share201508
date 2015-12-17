@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);//100->num作为私有变量输出
+        console.log(this.num);//200->实例的私有属性值
+        return num;
+    }
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);
+    console.log(f.num);//200->找到这个实例的私有属性
+    f.getNum();//200->先找私有，再找公有属性，f是执行的主体，故function里面的this是f，所以f.num=200
+    Fn.prototype.getNum();//300->执行主体是Fn.prototype，故function里面的this是Fn.prototype，即输出Fn.prototype.num
+    console.log(num);//0->输出全局变量num=0
+
+    var n = Fn(num);//Fn作为普通函数执行，里面的num是私有变量，此时function里面的this是window，故num=100，this.num=200
+    console.log(n);//100->Fn里面的返回值赋值给n，返回值num是私有变量num=100
+    console.log(num);//200->function里面this是window。故此时window下的num变成了200
+</script>
+</body>
+</html>

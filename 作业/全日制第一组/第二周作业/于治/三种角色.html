@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+var num = 0;
+function Fn(num) {
+    arguments[0] = 100;
+    this.num = 200;  //将全局中的window.num=200
+    console.log(num);    //->100,形参赋值num=0,num是私有变量 将arguments[0] = 100，则num=100
+    console.log(this.num);
+    return num;
+}
+
+Fn.num = 400;   //  ->Fn作为普通对象 给属性名num赋值400
+Fn.prototype.num = 300;
+Fn.prototype.getNum = function () {
+    console.log(this.num);
+};
+
+var f = new Fn(num);    // f是Fn的一个实例
+console.log(f.num);   // 200 -> f里面有Fn的属性，num现在是f的私有属性，num=200
+f.getNum();    //  -> f通过__proto__找到Fn的prototype上，执行getNum,this是f，所有输出得200
+Fn.prototype.getNum();  //   this找到的是Fn.prototype的num，输出结果为300
+console.log(num);   //    输出的全局变量num，为200
+
+var n = Fn(num);
+console.log(n);  //   执行Fn得到的返回值是私有变量100
+console.log(num);  //  200
+</script>
+</body>
+</html>

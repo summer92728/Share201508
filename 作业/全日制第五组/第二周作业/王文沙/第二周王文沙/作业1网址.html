@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var str ="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    function urlToObj(str) {
+        var reg = /([^=?&]+)=([^=?&]+)/g;
+        var obj = {};
+        while (tempa = reg.exec(str)) {
+            obj[tempa[1]] =tempa[2];
+        }
+        return obj;
+    }
+    console.log(urlToObj(str));
+</script>
+
+</body>
+</html>

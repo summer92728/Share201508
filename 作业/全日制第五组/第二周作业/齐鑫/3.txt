@@ -1,0 +1,23 @@
+var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);   
+        console.log(this.num);    
+        return num;     
+    }
+
+    Fn.num = 400;     //对象
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);   //类  ->100   f.num=200
+    console.log(f.num);   ->200
+    f.getNum();   -> f.num=200
+    Fn.prototype.getNum();   ->Fn.prototype.num = 300
+    console.log(num);   ->此时全局的num=0 
+    var n = Fn(num);    // 函数  ->100   200
+    console.log(n);   ->100  
+    console.log(num);    ->200  执行n=Fn（num）时候this.window=200时已经将全局的num=200

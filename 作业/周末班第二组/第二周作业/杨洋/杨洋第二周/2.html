@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+//    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+//    把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}
+var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    function getUrlParameter(url){
+        var ary=url.split("?")[1];
+        var ary1=ary.split("&");
+        var obj={};
+        for(var i=0;i<ary1.length;i++){
+            var ary2=ary1[i].split("=");
+            obj[ary2[0]]=ary2[1];
+        }
+
+        return obj;
+    }
+    console.log(getUrlParameter(url));
+</script>
+</body>
+</html>

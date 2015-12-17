@@ -1,0 +1,63 @@
+﻿作业/项目/优质代码的仓库地址：
+https://github.com/zhufengpeixun/Share201508.git (以后的作业/项目/代码贡献都提交到这个地址)
+
+[周三晚上12:00之前提交作业]
+
+1、”珠峰培训第二周作业.doc“
+
+2、本题在项目开发中必用到
+    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}
+
+
+    function getUrl(url){
+        var reg=/([^?&=]+)=([^?&=]+)/g;
+        var ary={};
+        var a=reg.exec(url);
+        while(a){
+            ary[a[1]]=a[2];
+            a=reg.exec(url);
+        }
+        return ary;
+    }
+    var res=getUrl(url);
+    console.log(res);
+
+
+3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);        /私有变量100
+        console.log(this.num);   //200
+        return num;
+    }
+
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);
+    console.log(f.num);         //f的属性200
+    f.getNum();                 //f的属性200
+    Fn.prototype.getNum();      // Fn.prototype.num = 300;
+    console.log(num);         //全局的  num=0
+
+
+    var n = Fn(num);           //普通函数Fn的私有变量100
+
+                              //全局变量改为200
+
+    console.log(n);           //返回值为100；函数的私有变量；
+    console.log(num);         //函数的全局变量200
+
+ 
+
+
+
+
+
+

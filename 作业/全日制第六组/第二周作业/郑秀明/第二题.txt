@@ -1,0 +1,14 @@
+var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    function getUrl(url){
+        //var reg=/([^?&=]+)=([^?&=]+)/g;
+        var reg=/([a-z0-9A-Z]+)=([a-z0-9A-Z]+)/g;
+        var ary={};
+        var a=reg.exec(url);
+        while(a){
+            ary[a[1]]=a[2];
+            a=reg.exec(url);
+        }
+        return ary;
+    }
+    var res=getUrl(url);
+    console.log(res);

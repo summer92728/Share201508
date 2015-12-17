@@ -1,0 +1,12 @@
+<script type="text/javascript">
+    var str="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    var reg=/[a-z]+=[\w.]+/g;
+    var ary=[];
+    var res = reg.exec(str);
+        while (res) {
+            ary.push(res[0]);
+            res = reg.exec(str);
+        }
+        console.log(ary);
+
+</script>

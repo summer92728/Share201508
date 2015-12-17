@@ -1,0 +1,24 @@
+ var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);//->100 私有变量形参0被arguments[0] = 100从新赋值。
+        console.log(this.num);->200 f.num被200重新赋值。
+        return num;
+    }
+
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);->f.num->200
+    };
+
+    var f = new Fn(num);
+    console.log(f.num);->200 f是fn的实例，fn里的this.num->f.num
+    f.getNum();->200
+    Fn.prototype.getNum();->300;
+    console.log(num);->0
+
+    var n = Fn(num);
+    console.log(n);->100
+    console.log(num);200

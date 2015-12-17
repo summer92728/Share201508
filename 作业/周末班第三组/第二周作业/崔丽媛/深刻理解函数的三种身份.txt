@@ -1,0 +1,27 @@
+3、深刻的来理解函数的三种角色
+
+三种身份：类-实例 普通函数 对象
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;->形参是一个私有变量  
+        this.num = 200;->这时this是f   ->在普通函数是this是window  window.sum=200
+        console.log(num);->私有变量num=100
+        console.log(this.num);f.num=200  window.sum=200
+        return num;->返回的是私有变量num
+    }
+
+    Fn.num = 400;->类里添加私有的属性和方法
+    Fn.prototype.num = 300;->类里添加共有的属性和方法
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);—>此时函数是一个类，f是这个类的一个实例
+    console.log(f.num);->100 200 200
+    f.getNum();这里的this是f->100 200 200
+    Fn.prototype.getNum();->这里的this是Fn.prototype->300;
+    console.log(num);->0
+
+    var n = Fn(num);->这时是一个普通函数
+    console.log(n);-> 100 200 100
+    console.log(num);->输出Fn(num)执行后的返回结果 100 200 100

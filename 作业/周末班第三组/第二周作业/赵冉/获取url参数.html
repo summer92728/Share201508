@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+		function getPara(url){
+			var str=url.split("?")[1];
+			var obj={};		
+		 	if(str){
+		 		//方法1
+				// str.replace(/[\w.-]+=[\w.-]*/g, function () {
+			 //        var attr=arguments[0].split("=");
+			 //        obj[attr[0]]=attr[1];
+	   //  		});
+	    		//方法2
+				str.replace(/([\w.-]+)=([\w.-]*)/g, function () {
+					obj[arguments[1]]=arguments[2];
+				});
+				//方法3
+				// var ary=str.split("&");
+				// for(var i=0;i<ary.length;i++){
+				// 	var attr=ary[i].split("=");
+				// 	obj[attr[0]]=attr[1];
+				// }
+				return obj;
+	    	}
+		}
+		var  res=getPara(url);
+		console.log(res);
+	</script>
+</body>
+</html>

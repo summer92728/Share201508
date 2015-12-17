@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var num = 0;
+	function Fn(num) {
+		arguments[0] = 100;
+		this.num = 200;
+		console.log(num);
+		console.log(this.num);
+		return num;
+	}
+	Fn.num = 400;
+	Fn.prototype.num = 300;
+	Fn.prototype.getNum = function () {
+		console.log(this.num);
+	};
+
+	var f = new Fn(num);
+	//1、Fn是个类函数，虽然Fn有返回值，但是是个基本数据类型的值，f仍然是Fn的一个实例
+	//2、类有普通函数的一面,当函数执行的时候,传参，执行代码，Fn(num)执行会输出参数num：100,this.num相当于f.num:200
+	console.log(f.num);
+	// f.num=200;
+	f.getNum();
+	//找到f所属类Fn的原型就是Fn.prototype上的getNum方法，输出的是this.num;f.num=200,所以结果是200；
+	Fn.prototype.getNum();
+	//这里的this指的是Fn.prototype，所以this.num=300;
+	console.log(num);
+	//输出的是全局变量num，0
+
+	var n = Fn(num);
+	//Fn是个普通函数，把Fn执行的返回结果赋值给变量n;
+	// Fn(num)执行的时候输出参数num：100,window.num:200;
+	console.log(n);//Fn执行的结果是return  Fn里的私有变量(参数)num 即100;
+	console.log(num);Fn执行时里面的this指的是window，所以全局变量num的值变成了200
+</script>
+</body>
+</html>													

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+/*  需求：
+  2、本题在项目开发中必用到
+    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}*/
+    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    var reg=url.split("?")[1].replace(/=/g,":").replace(/&/g,",");//通过split把“?”分割字符串,获取下标为1，把“=”替换成“: ”把&替换成“，”
+    console.log(reg);
+</script>
+</body>
+</html>

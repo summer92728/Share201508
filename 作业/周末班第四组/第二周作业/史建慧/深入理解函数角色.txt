@@ -1,0 +1,24 @@
+ var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+
+    Fn.num = 400;---Fn是对象
+    Fn.prototype.num = 300;----类
+    Fn.prototype.getNum = function () {---类
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);----类-100 200
+    console.log(f.num);--200
+    f.getNum();--200
+    Fn.prototype.getNum();---300
+    console.log(num);--0
+
+    var n = Fn(num);----函数 100 200
+    console.log(n);--100
+    console.log(num);--200

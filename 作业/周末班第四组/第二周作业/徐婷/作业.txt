@@ -1,0 +1,49 @@
+﻿作业/项目/优质代码的仓库地址：
+https://github.com/zhufengpeixun/Share201508.git (以后的作业/项目/代码贡献都提交到这个地址)
+
+[周三晚上12:00之前提交作业]
+
+1、”珠峰培训第二周作业.doc“
+
+2、本题在项目开发中必用到
+    var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    把url中问号后传递的参数值获取到,例如:获取的结果是{mid:10000,cid:1467086,app:1.0}
+  function GetRequest() { 
+   var url = location.search; //获取url中"?"符后的字串 
+   var theRequest = new Object(); 
+     if (url.indexOf("?") != -1) { 
+      var str = url.substr(1); 
+      strs = str.split("&"); 
+      for(var i = 0; i < strs.length; i ++) { 
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]); 
+          } 
+           } 
+            return theRequest; 
+      } 
+
+
+3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);-->100
+        console.log(this.num);-->200
+        return num;
+    }
+
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);-->200
+    };
+
+    var f = new Fn(num);
+    console.log(f.num);-->100
+    f.getNum();
+    Fn.prototype.getNum();
+    console.log(num);-->300
+
+    var n = Fn(num);
+    console.log(n);-->100
+    console.log(num);-->200

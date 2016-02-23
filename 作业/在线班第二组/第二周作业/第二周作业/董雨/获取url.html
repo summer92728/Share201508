@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var url="http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+		function getValue(){
+		var res=url.replace(/\=/g,":");
+		console.log(res);
+		var rel=/([a-z]+):(\d+\.?\d{0,})/g;
+		var num=res.match(rel);
+		console.log(num);
+		var para={};
+		for(var key in num){
+			var obj=num[key].split(":");
+			para[obj[0]]=obj[1];
+		}
+	}
+		console.log(para)
+
+	</script>
+</body>
+</html>

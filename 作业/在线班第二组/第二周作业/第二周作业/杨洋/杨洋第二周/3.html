@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+
+//    3、深刻的来理解函数的三种角色
+    var num = 0;
+    function Fn(num) {
+        arguments[0] = 100;
+        this.num = 200;
+        console.log(num);
+        console.log(this.num);
+        return num;
+    }
+
+
+    Fn.num = 400;//函数作为对象  ----Fn.num=400;
+    Fn.prototype.num = 300;   //  ----原型上增加属性num=300
+    Fn.prototype.getNum = function () {//---原型上增加方法getNum
+        console.log(this.num);
+    };
+
+    var f = new Fn(num);//new Fn(num) 执行的返回值赋值给f  执行过程中 100  200  返回的是一个对象，值类型的数不会将返回的对象覆盖，所以其返回值f是一个对象
+    console.log(f.num);//200
+    f.getNum();//200
+    Fn.prototype.getNum();//undefined
+    console.log(num);//300
+
+    var n = Fn(num);  //普通的函数执行  将函数的返回值赋值给n
+    console.log(n);//100
+    console.log(num);//200
+</script>
+</body>
+</html>
